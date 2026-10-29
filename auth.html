@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar · Seend</title>
+<style>
+  :root { --azul:#2563eb; --azul-oscuro:#1e40af; --azul-claro:#dbeafe; --fondo:#f8fafc; --borde:#e2e8f0; --texto:#0f172a; --texto-suave:#64748b; --error:#ef4444; --exito:#22c55e; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { height:100%; }
+  body { font-family:-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--fondo); color:var(--texto); display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; -webkit-tap-highlight-color:transparent; }
+  .card { background:white; width:100%; max-width:400px; border-radius:20px; box-shadow:0 20px 40px rgba(15,23,42,.08),0 1px 3px rgba(15,23,42,.05); padding:36px 30px; animation:aparecer .4s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes aparecer { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  .logo { width:64px; height:64px; border-radius:16px; background:var(--azul-claro); color:var(--azul); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; box-shadow:0 4px 12px rgba(37,99,235,.15); }
+  .logo svg { width:32px; height:32px; }
+  h1 { text-align:center; font-size:24px; font-weight:800; margin-bottom:8px; letter-spacing:-0.5px; }
+  .sub { text-align:center; font-size:14px; color:var(--texto-suave); margin-bottom:28px; }
+  .tabs { display:flex; background:var(--fondo); border-radius:12px; padding:5px; margin-bottom:24px; position:relative; }
+  .tabs button { flex:1; padding:10px; border:none; background:none; border-radius:9px; font-size:14px; font-weight:600; color:var(--texto-suave); cursor:pointer; transition:color .2s; font-family:inherit; position:relative; z-index:1; }
+  .tabs button.activo { color:var(--azul); }
+  .tabs .deslizador { position:absolute; top:5px; bottom:5px; left:5px; width:calc(50% - 5px); background:white; border-radius:9px; box-shadow:0 2px 6px rgba(15,23,42,.08); transition:transform .3s cubic-bezier(0.16,1,0.3,1); z-index:0; }
+  .tabs.registro .deslizador { transform:translateX(100%); }
+  .campo { margin-bottom:16px; position:relative; }
+  .campo label { display:block; font-size:13px; font-weight:600; color:var(--texto); margin-bottom:6px; }
+  .campo input { width:100%; padding:14px 16px; border:1.5px solid var(--borde); border-radius:12px; font-size:15px; outline:none; font-family:inherit; color:var(--texto); background:var(--fondo); transition:all .2s; }
+  .campo input:focus { border-color:var(--azul); background:white; box-shadow:0 0 0 4px rgba(37,99,235,.1); }
+  .campo .btn-ojo { position:absolute; right:14px; bottom:14px; background:none; border:none; color:var(--texto-suave); cursor:pointer; padding:4px; display:flex; align-items:center; }
+  .campo .btn-ojo svg { width:20px; height:20px; }
+  .error-msg { background:#fef2f2; color:var(--error); font-size:13px; font-weight:500; padding:12px 14px; border-radius:10px; margin-bottom:20px; display:none; align-items:center; gap:8px; }
+  .error-msg.activa { display:flex; }
+  .btn-principal { width:100%; padding:15px; border:none; border-radius:12px; background:var(--azul); color:white; font-size:15px; font-weight:700; cursor:pointer; transition:all .2s; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(37,99,235,.25); margin-top:8px; }
+  .btn-principal:hover:not(:disabled) { background:var(--azul-oscuro); transform:translateY(-1px); box-shadow:0 6px 16px rgba(37,99,235,.3); }
+  .btn-principal:disabled { background:#94a3b8; cursor:not-allowed; box-shadow:none; transform:none; }
+  .spinner { width:18px; height:18px; border:2px solid rgba(255,255,255,.3); border-top-color:white; border-radius:50%; animation:girar .8s linear infinite; display:none; }
+  @keyframes girar { to { transform:rotate(360deg); } }
+  .oculto { display:none !important; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+  <h1>Seend</h1>
+  <p class="sub" id="subtitulo">Bienvenido de nuevo</p>
+  <div class="tabs" id="tabs-container">
+    <div class="deslizador"></div>
+    <button id="tab-login" class="activo" type="button">Iniciar sesión</button>
+    <button id="tab-registro" type="button">Crear cuenta</button>
+  </div>
+  <div class="error-msg" id="error">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span id="error-texto"></span>
+  </div>
+  <form id="form">
+    <div class="campo"><label>Nombre de usuario</label><input id="nombre" maxlength="20" autocomplete="username" placeholder="Tu nombre" autofocus></div>
+    <div class="campo"><label>Contraseña</label><input id="password" type="password" autocomplete="current-password" placeholder="Mínimo 4 caracteres"><button type="button" class="btn-ojo" id="btn-ojo-pass"><svg id="icono-ojo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+    <div class="campo oculto" id="campo-confirmar"><label>Confirmar contraseña</label><input id="confirmar" type="password" autocomplete="new-password" placeholder="Repite la contraseña"></div>
+    <button class="btn-principal" id="btn-submit" type="submit"><span id="btn-texto">Entrar</span><div class="spinner" id="spinner"></div></button>
+  </form>
+</div>
+<script>
+  let modo = "login", ws;
+  const tabsContainer = document.getElementById('tabs-container');
+  const tabLogin = document.getElementById('tab-login');
+  const tabRegistro = document.getElementById('tab-registro');
+  const campoConfirmar = document.getElementById('campo-confirmar');
+  const btnSubmit = document.getElementById('btn-submit');
+  const btnTexto = document.getElementById('btn-texto');
+  const spinner = document.getElementById('spinner');
+  const subtitulo = document.getElementById('subtitulo');
+  const errorEl = document.getElementById('error');
+  const errorTexto = document.getElementById('error-texto');
+  const form = document.getElementById('form');
+  const passInput = document.getElementById('password');
+  const confirmarInput = document.getElementById('confirmar');
+  const nombreInput = document.getElementById('nombre');
+
+  document.getElementById('btn-ojo-pass').onclick = () => {
+    const esPass = passInput.type === 'password';
+    passInput.type = esPass ? 'text' : 'password';
+    document.getElementById('icono-ojo').innerHTML = esPass 
+      ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+      : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  };
+  function mostrarError(t) { errorTexto.textContent = t; errorEl.classList.add('activa'); }
+  function limpiarError() { errorEl.classList.remove('activa'); }
+  function setModo(m) {
+    modo = m; limpiarError();
+    if (m === 'login') {
+      tabsContainer.classList.remove('registro');
+      tabLogin.classList.add('activo'); tabRegistro.classList.remove('activo');
+      campoConfirmar.classList.add('oculto'); btnTexto.textContent = 'Entrar';
+      subtitulo.textContent = 'Bienvenido de nuevo';
+    } else {
+      tabsContainer.classList.add('registro');
+      tabRegistro.classList.add('activo'); tabLogin.classList.remove('activo');
+      campoConfirmar.classList.remove('oculto'); btnTexto.textContent = 'Crear cuenta';
+      subtitulo.textContent = 'Únete a la conversación';
+    }
+  }
+  tabLogin.onclick = () => setModo('login');
+  tabRegistro.onclick = () => setModo('registro');
+  function setCargando(c) {
+    btnSubmit.disabled = c;
+    btnTexto.classList.toggle('oculto', c);
+    spinner.style.display = c ? 'block' : 'none';
+  }
+  function conectar() {
+    return new Promise((res, rej) => {
+      const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+      ws = new WebSocket(`${proto}://${location.host}/ws`);
+      ws.onopen = () => res(ws);
+      ws.onerror = () => rej(new Error('No se pudo conectar'));
+      ws.onmessage = e => {
+        const m = JSON.parse(e.data);
+        if (m.tipo === 'auth_ok') {
+          localStorage.setItem('token', m.token); localStorage.setItem('nombre', m.nombre);
+          window.location.href = 'chat.html';
+        } else if (m.tipo === 'error') {
+          mostrarError(m.texto); setCargando(false);
+        }
+      };
+    });
+  }
+  form.onsubmit = async (e) => {
+    e.preventDefault(); limpiarError();
+    const nombre = nombreInput.value.trim(), password = passInput.value, confirmar = confirmarInput.value;
+    if (!nombre || !password) { mostrarError('Completa todos los campos.'); return; }
+    if (password.length < 4) { mostrarError('La contraseña debe tener al menos 4 caracteres.'); return; }
+    if (modo === 'registro' && password !== confirmar) { mostrarError('Las contraseñas no coinciden.'); return; }
+    setCargando(true);
+    try {
+      if (!ws || ws.readyState !== 1) await conectar();
+      ws.send(JSON.stringify({ tipo: modo === 'login' ? 'login' : 'registro', nombre, password }));
+    } catch (err) { mostrarError(err.message); setCargando(false); }
+  };
+</script>
+</body>
+</html>
