@@ -4,7 +4,7 @@
   "main": "servidor.js",
   "scripts": {
     "start": "node servidor.js",
-    "build:web": "mkdir -p www && cp auth.html chat.html www/"
+    "build:web": "mkdir -p www && cp auth.html www/index.html && cp chat.html www/chat.html"
   },
   "dependencies": {
     "formidable": "^3.5.1",
