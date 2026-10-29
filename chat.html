@@ -8,24 +8,28 @@
   :root {
     --azul: #2563eb; --azul-oscuro: #1e40af; --azul-claro: #dbeafe;
     --fondo: #f8fafc; --borde: #e2e8f0; --texto: #0f172a; --texto-suave: #64748b;
-    --en-linea: #2563eb; --peligro: #ef4444;
+    --en-linea: #2563eb; --peligro: #ef4444; --verde: #22c55e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--fondo); color: var(--texto); height: 100vh; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+  
   .app { display: flex; height: 100vh; }
   .col-izq { width: 340px; background: white; border-right: 1px solid var(--borde); display: flex; flex-direction: column; flex-shrink: 0; position: relative; z-index: 10; }
   .col-der { flex: 1; display: flex; flex-direction: column; min-width: 0; background: var(--fondo); position: relative; }
+  
   .topbar { background: white; border-bottom: 1px solid var(--borde); padding: 12px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; height: 64px; }
   .topbar h1 { font-size: 18px; font-weight: 800; flex: 1; letter-spacing: -0.3px; }
   .btn-volver { background: none; border: none; cursor: pointer; color: var(--azul); padding: 6px; display: flex; align-items: center; border-radius: 50%; transition: background .15s; }
   .btn-volver:hover { background: var(--azul-claro); }
   .btn-volver svg { width: 22px; height: 22px; }
+  
   .mi-perfil-btn { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; padding: 4px 8px 4px 4px; border-radius: 20px; transition: background .15s; }
   .mi-perfil-btn:hover { background: var(--fondo); }
   .mi-perfil-btn.oculto { display: none; }
   .mi-perfil-btn .avatar { width: 36px; height: 36px; font-size: 14px; }
   .mi-perfil-btn .mi-nombre { font-size: 14px; font-weight: 600; color: var(--texto); max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
   #lista-chats { flex: 1; overflow-y: auto; }
   .chat-item { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--borde); cursor: pointer; transition: background .1s; }
   .chat-item:hover { background: #f1f5f9; }
@@ -45,6 +49,7 @@
   #btn-nuevo:active { transform: scale(.95); }
   #btn-nuevo.oculto { display: none; }
   #btn-nuevo svg { width: 26px; height: 26px; }
+
   #lista-usuarios { flex: 1; overflow-y: auto; background: white; }
   .separador { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--texto-suave); padding: 16px 18px 8px; background: var(--fondo); }
   .usuario-item { display: flex; align-items: center; gap: 12px; padding: 12px 18px; cursor: pointer; transition: background .1s; border-bottom: 1px solid var(--borde); }
@@ -54,6 +59,7 @@
   .usuario-item .nombre { font-size: 15px; font-weight: 600; }
   .usuario-item .estado { font-size: 13px; color: var(--texto-suave); margin-top: 2px; }
   .usuario-item .estado.en-linea { color: var(--en-linea); font-weight: 500; }
+
   #conv-header { background: white; border-bottom: 1px solid var(--borde); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; height: 64px; position: relative; }
   #conv-header .btn-volver { margin-right: 2px; }
   #conv-header .perfil-btn { display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; padding: 4px 8px 4px 4px; border-radius: 10px; flex: 1; min-width: 0; transition: background .15s; text-align: left; }
@@ -72,6 +78,7 @@
   .menu-opciones button:hover { background: #fef2f2; }
   .menu-opciones button svg { width: 18px; height: 18px; }
   @keyframes aparecerMenu { from { opacity: 0; transform: scale(.95) translateY(-5px); } to { opacity: 1; transform: none; } }
+
   #mensajes { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
   .msg { max-width: 75%; min-width: 70px; padding: 9px 14px; border-radius: 16px; background: var(--azul); color: white; align-self: flex-start; position: relative; cursor: pointer; word-wrap: break-word; animation: aparecer .2s ease-out; box-shadow: 0 1px 2px rgba(15,23,42,.08); }
   .msg.propio { background: white; color: var(--texto); border: 1px solid var(--borde); align-self: flex-end; border-bottom-right-radius: 4px; }
@@ -89,6 +96,7 @@
   .msg .check.entregado { color: #64748b; }
   .msg .check.visto { color: var(--azul); }
   @keyframes aparecer { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
   #barra-respuesta { display: none; background: white; border-top: 1px solid var(--borde); padding: 10px 16px; align-items: center; gap: 12px; }
   #barra-respuesta.activa { display: flex; }
   #barra-respuesta .linea { border-left: 3px solid var(--azul); padding-left: 12px; flex: 1; min-width: 0; }
@@ -96,6 +104,7 @@
   #barra-respuesta .linea .texto { font-size: 13px; color: var(--texto-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #barra-respuesta .cerrar { background: none; border: none; font-size: 22px; color: var(--texto-suave); cursor: pointer; padding: 4px 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
   #barra-respuesta .cerrar:hover { background: var(--fondo); }
+
   #form { background: white; border-top: 1px solid var(--borde); padding: 12px 16px; display: flex; gap: 10px; align-items: flex-end; flex-shrink: 0; }
   #texto { flex: 1; padding: 12px 18px; border: 1.5px solid var(--borde); border-radius: 24px; outline: none; font-size: 15px; background: var(--fondo); resize: none; max-height: 120px; min-height: 46px; line-height: 1.4; font-family: inherit; color: var(--texto); transition: all .2s; }
   #texto:focus { background: white; border-color: var(--azul); box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
@@ -106,38 +115,46 @@
   #enviar { background: var(--azul); color: white; box-shadow: 0 2px 8px rgba(37,99,235,.3); }
   #enviar:hover { background: var(--azul-oscuro); color: white; }
   #enviar:disabled { background: #cbd5e1; color: white; cursor: default; box-shadow: none; }
-  #perfil-otro { position: absolute; top: 0; right: 0; bottom: 0; width: 360px; background: white; border-left: 1px solid var(--borde); box-shadow: -10px 0 30px rgba(15,23,42,.1); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 25; }
-  #perfil-otro.activa { transform: translateX(0); }
-  #perfil-otro .cerrar-drawer { position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; border-radius: 50%; background: var(--fondo); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--texto-suave); z-index: 1; transition: background .15s; }
-  #perfil-otro .cerrar-drawer:hover { background: var(--borde); }
-  #perfil-otro .cerrar-drawer svg { width: 18px; height: 18px; }
-  .perfil-cuerpo { flex: 1; padding: 60px 24px 30px; overflow-y: auto; }
-  .perfil-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--azul-claro); color: var(--azul-oscuro); display: flex; align-items: center; justify-content: center; font-size: 38px; font-weight: 800; margin: 0 auto 24px; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 8px 24px rgba(37,99,235,.15); }
-  .perfil-nombre { text-align: center; font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-  .perfil-estado { text-align: center; font-size: 14px; color: var(--texto-suave); margin-bottom: 32px; font-weight: 500; }
-  .perfil-estado.en-linea { color: var(--en-linea); }
-  .campo { margin-bottom: 20px; }
-  .campo label { display: block; font-size: 13px; font-weight: 700; color: var(--texto-suave); margin-bottom: 8px; }
-  .campo input, .campo textarea { width: 100%; padding: 14px 16px; border: 1.5px solid var(--borde); border-radius: 12px; font-size: 15px; outline: none; font-family: inherit; color: var(--texto); background: var(--fondo); transition: all .2s; }
-  .campo input:focus, .campo textarea:focus { border-color: var(--azul); background: white; box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
-  .campo textarea { resize: vertical; min-height: 80px; }
-  .btn-guardar { width: 100%; padding: 14px; border: none; border-radius: 12px; background: var(--azul); color: white; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: all .2s; font-family: inherit; box-shadow: 0 4px 12px rgba(37,99,235,.2); }
-  .btn-guardar:hover { background: var(--azul-oscuro); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,99,235,.3); }
-  .dato-fila { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--borde); font-size: 15px; gap: 12px; }
-  .dato-fila .etiqueta { color: var(--texto-suave); font-weight: 600; flex-shrink: 0; }
-  .dato-fila .valor { text-align: right; word-break: break-word; font-weight: 500; }
-  #mi-perfil { position: absolute; inset: 0; background: white; z-index: 30; display: none; flex-direction: column; animation: deslizarDerecha .25s ease-out; }
-  #mi-perfil.activa { display: flex; }
+
+  /* --- ESTILOS DE PERFIL (TIPO TELEGRAM) --- */
+  .pantalla-perfil {
+    position: absolute; inset: 0; background: white; z-index: 30; 
+    display: none; flex-direction: column;
+    animation: deslizarDerecha .25s ease-out;
+  }
+  .pantalla-perfil.activa { display: flex; }
   @keyframes deslizarDerecha { from { transform: translateX(100%); } to { transform: translateX(0); } }
-  #mi-perfil .avatar-edit { position: relative; width: 110px; height: 110px; margin: 0 auto 24px; }
-  #mi-perfil .avatar-edit .perfil-avatar { margin: 0; width: 100%; height: 100%; }
-  #mi-perfil .avatar-edit .camara { position: absolute; bottom: 0; right: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--azul); color: white; border: 3px solid white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: transform .15s; }
-  #mi-perfil .avatar-edit .camara:hover { transform: scale(1.1); }
-  #mi-perfil .avatar-edit .camara svg { width: 18px; height: 18px; }
-  .perfil-sub { text-align: center; font-size: 13px; color: var(--texto-suave); margin-bottom: 32px; }
+  
+  .perfil-header { padding: 60px 24px 30px; display: flex; flex-direction: column; align-items: center; position: relative; }
+  .perfil-avatar { width: 120px; height: 120px; border-radius: 50%; background: var(--azul-claro); color: var(--azul-oscuro); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 800; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 8px 24px rgba(37,99,235,.15); }
+  .btn-camara { position: absolute; bottom: 30px; right: calc(50% - 60px); width: 40px; height: 40px; border-radius: 50%; background: var(--verde); color: white; border: 3px solid white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: transform .15s; }
+  .btn-camara:hover { transform: scale(1.1); }
+  .btn-camara svg { width: 20px; height: 20px; }
+  
+  .perfil-item { display: flex; align-items: center; gap: 20px; padding: 16px 24px; cursor: pointer; border-bottom: 1px solid var(--borde); transition: background .15s; }
+  .perfil-item:hover { background: var(--fondo); }
+  .perfil-item .icono { color: var(--texto-suave); display: flex; align-items: center; justify-content: center; }
+  .perfil-item .icono svg { width: 24px; height: 24px; }
+  .perfil-item .datos { flex: 1; }
+  .perfil-item .label { font-size: 16px; font-weight: 500; color: var(--texto); }
+  .perfil-item .valor { font-size: 14px; color: var(--texto-suave); margin-top: 2px; }
+  .perfil-item .valor.verde { color: var(--verde); }
+
+  /* Pantallas de edición (Nombre, Usuario, Info) */
+  .pantalla-edicion { position: absolute; inset: 0; background: white; z-index: 40; display: none; flex-direction: column; animation: deslizarDerecha .25s ease-out; }
+  .pantalla-edicion.activa { display: flex; }
+  .edicion-cuerpo { flex: 1; padding: 24px; }
+  .campo-edicion { position: relative; margin-bottom: 24px; }
+  .campo-edicion label { position: absolute; top: -8px; left: 12px; background: white; padding: 0 4px; font-size: 12px; color: var(--verde); font-weight: 500; }
+  .campo-edicion input, .campo-edicion textarea { width: 100%; padding: 16px; border: 1.5px solid var(--verde); border-radius: 8px; font-size: 16px; outline: none; font-family: inherit; color: var(--texto); background: white; }
+  .campo-edicion textarea { resize: vertical; min-height: 100px; }
+  .btn-guardar-edicion { width: calc(100% - 48px); margin: 0 24px 24px; padding: 16px; border: none; border-radius: 24px; background: var(--verde); color: white; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+  .btn-guardar-edicion:hover { background: #16a34a; }
+
   #visor { position: fixed; inset: 0; background: rgba(15,23,42,.95); display: none; align-items: center; justify-content: center; z-index: 50; cursor: zoom-out; backdrop-filter: blur(4px); }
   #visor.activo { display: flex; }
   #visor img { max-width: 92%; max-height: 92%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+
   .imagen-pendiente { position: relative; width: 220px; height: 160px; margin-top: 6px; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg,#e2e8f0 0%,#cbd5e1 100%); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; cursor: default; }
   .imagen-pendiente .difuminado { position: absolute; inset: 0; backdrop-filter: blur(12px); background: rgba(255,255,255,.1); }
   .imagen-pendiente .btn-descargar { position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; border: none; background: rgba(255,255,255,.8); color: var(--azul); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px); transition: all .15s; box-shadow: 0 4px 12px rgba(0,0,0,.1); }
@@ -151,6 +168,7 @@
   .anillo-progreso .frente { stroke: var(--azul); stroke-linecap: round; transition: stroke-dashoffset .15s; }
   .imagen-cargada { margin-top: 6px; }
   .imagen-cargada .imagen { max-width: 250px; max-height: 250px; width: auto; height: auto; border-radius: 12px; display: block; cursor: zoom-in; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+
   @media (max-width: 768px) {
     .app { position: relative; }
     .col-izq { width: 100%; border-right: none; }
@@ -183,6 +201,7 @@
     <div id="lista-usuarios" style="display:none;"></div>
     <button id="btn-nuevo" title="Nuevo chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
   </div>
+  
   <div class="col-der vacio" id="col-der">
     <div id="placeholder-conv">Selecciona una conversación para empezar a chatear</div>
     <div id="pantalla-conv" style="display:none; flex:1; flex-direction:column; min-height:0;">
@@ -197,18 +216,12 @@
         </button>
         <button class="btn-menu-conv" id="btn-menu-conv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
         <div class="menu-opciones" id="menu-opciones">
-          <button id="btn-eliminar-chat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            Eliminar conversación
-          </button>
+          <button id="btn-eliminar-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Eliminar conversación</button>
         </div>
       </div>
       <div id="mensajes"></div>
       <div id="barra-respuesta">
-        <div class="linea">
-          <div class="autor" id="resp-autor"></div>
-          <div class="texto" id="resp-texto"></div>
-        </div>
+        <div class="linea"><div class="autor" id="resp-autor"></div><div class="texto" id="resp-texto"></div></div>
         <button class="cerrar" id="resp-cerrar" type="button">×</button>
       </div>
       <form id="form">
@@ -219,32 +232,100 @@
       </form>
     </div>
   </div>
-  <div id="perfil-otro">
-    <button class="cerrar-drawer" id="cerrar-perfil-otro" title="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <div class="perfil-cuerpo">
+
+  <!-- PANEL: PERFIL DE OTRO USUARIO -->
+  <div id="perfil-otro" class="pantalla-perfil">
+    <div class="topbar">
+      <button class="btn-volver" onclick="document.getElementById('perfil-otro').classList.remove('activa'); perfilAbierto=null;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <h1>Perfil</h1>
+    </div>
+    <div class="perfil-header">
       <div class="perfil-avatar" id="otro-perfil-avatar">?</div>
-      <div class="perfil-nombre" id="otro-perfil-nombre"></div>
-      <div class="perfil-estado" id="otro-perfil-estado"></div>
-      <div class="dato-fila"><span class="etiqueta">Biografía</span><span class="valor" id="otro-perfil-bio">—</span></div>
     </div>
-  </div>
-  <div id="mi-perfil">
-    <div class="topbar"><button class="btn-volver" id="cerrar-mi-perfil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><h1>Mi perfil</h1></div>
-    <div class="perfil-cuerpo">
-      <div class="avatar-edit">
-        <div class="perfil-avatar" id="mi-perfil-avatar">?</div>
-        <button class="camara" id="btn-cambiar-avatar" title="Cambiar foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></button>
-        <input type="file" id="avatar-input" accept="image/*" hidden>
+    <div class="perfil-item">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="datos">
+        <div class="label">Nombre</div>
+        <div class="valor" id="otro-perfil-nombre"></div>
       </div>
-      <div class="perfil-sub">Toca la cámara para cambiar tu foto</div>
-      <div class="campo"><label>Nombre</label><input id="mi-perfil-nombre" maxlength="20"></div>
-      <div class="campo"><label>Biografía</label><textarea id="mi-perfil-bio" maxlength="120" placeholder="Cuéntanos algo sobre ti"></textarea></div>
-      <button class="btn-guardar" id="guardar-mi-perfil">Guardar cambios</button>
-      <button class="btn-guardar" id="cerrar-sesion" style="background:#fef2f2;color:#b91c1c;margin-top:16px;box-shadow:none;">Cerrar sesión</button>
+    </div>
+    <div class="perfil-item">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+      <div class="datos">
+        <div class="label">Info.</div>
+        <div class="valor" id="otro-perfil-bio">—</div>
+      </div>
     </div>
   </div>
+
+  <!-- PANEL: MI PERFIL -->
+  <div id="mi-perfil" class="pantalla-perfil">
+    <div class="topbar">
+      <button class="btn-volver" onclick="document.getElementById('mi-perfil').classList.remove('activa');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <h1>Perfil</h1>
+    </div>
+    <div class="perfil-header">
+      <div class="perfil-avatar" id="mi-perfil-avatar">?</div>
+      <button class="btn-camara" id="btn-cambiar-avatar" title="Cambiar foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></button>
+      <input type="file" id="avatar-input" accept="image/*" hidden>
+    </div>
+    
+    <div class="perfil-item" onclick="abrirEdicion('nombre')">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="datos">
+        <div class="label">Nombre</div>
+        <div class="valor" id="mi-perfil-nombre-val">—</div>
+      </div>
+    </div>
+    <div class="perfil-item" onclick="abrirEdicion('bio')">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+      <div class="datos">
+        <div class="label">Info.</div>
+        <div class="valor verde" id="mi-perfil-bio-val">Completar sección Info.</div>
+      </div>
+    </div>
+    <div class="perfil-item">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg></div>
+      <div class="datos">
+        <div class="label">Nombre de usuario</div>
+        <div class="valor" id="mi-perfil-user-val">@—</div>
+      </div>
+    </div>
+    <button class="btn-guardar-edicion" style="background:#fef2f2; color:#b91c1c; margin-top:auto;" id="cerrar-sesion">Cerrar sesión</button>
+  </div>
+
+  <!-- PANTALLA: EDITAR NOMBRE -->
+  <div id="pantalla-edit-nombre" class="pantalla-edicion">
+    <div class="topbar">
+      <button class="btn-volver" onclick="document.getElementById('pantalla-edit-nombre').classList.remove('activa');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <h1>Nombre</h1>
+    </div>
+    <div class="edicion-cuerpo">
+      <div class="campo-edicion">
+        <label>Tu nombre</label>
+        <input type="text" id="edit-nombre-input" maxlength="25">
+      </div>
+    </div>
+    <button class="btn-guardar-edicion" onclick="guardarEdicion('nombre')">Guardar</button>
+  </div>
+
+  <!-- PANTALLA: EDITAR BIO -->
+  <div id="pantalla-edit-bio" class="pantalla-edicion">
+    <div class="topbar">
+      <button class="btn-volver" onclick="document.getElementById('pantalla-edit-bio').classList.remove('activa');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <h1>Info.</h1>
+    </div>
+    <div class="edicion-cuerpo">
+      <div class="campo-edicion" style="border:none;">
+        <textarea id="edit-bio-input" placeholder="¿Qué sucede?" maxlength="120"></textarea>
+      </div>
+    </div>
+    <button class="btn-guardar-edicion" onclick="guardarEdicion('bio')">Guardar</button>
+  </div>
+
 </div>
 <div id="visor"><img id="visor-img" alt="imagen"></div>
+
 <script>
   const token = localStorage.getItem('token');
   if (!token) window.location.href = 'auth.html';
@@ -292,10 +373,6 @@
   volverUsuarios.onclick=()=>mostrarHome();
   document.getElementById('volver-conv').onclick=()=>cerrarChat();
   miPerfilBtn.onclick=()=>abrirMiPerfil();
-  document.getElementById('cerrar-mi-perfil').onclick=()=>miPerfil.classList.remove('activa');
-  document.getElementById('cerrar-perfil-otro').onclick=()=>{perfilOtro.classList.remove('activa');perfilAbierto=null;};
-  document.getElementById('conv-perfil-btn').onclick=()=>{if(chatActual)abrirPerfilOtro(chatActual);};
-  document.getElementById('guardar-mi-perfil').onclick=guardarMiPerfil;
   document.getElementById('cerrar-sesion').onclick=()=>{localStorage.removeItem('token');localStorage.removeItem('nombre');window.location.href='auth.html';};
   document.getElementById('btn-cambiar-avatar').onclick=()=>document.getElementById('avatar-input').click();
   
@@ -346,9 +423,52 @@
   }
 
   function actualizarMiAvatar(){pintarAvatar(miAvatar,perfilPropio.avatar,nombre);miNombre.textContent=nombre;}
-  function abrirMiPerfil(){pintarAvatar(document.getElementById('mi-perfil-avatar'),perfilPropio.avatar,nombre);document.getElementById('mi-perfil-nombre').value=perfilPropio.nombre||nombre;document.getElementById('mi-perfil-bio').value=perfilPropio.bio||'';miPerfil.classList.add('activa');}
-  function guardarMiPerfil(){const n=document.getElementById('mi-perfil-nombre').value.trim();const b=document.getElementById('mi-perfil-bio').value.trim();if(!n)return;ws.send(JSON.stringify({tipo:'actualizar_perfil',nombre:n,bio:b,avatar_url:perfilPropio.avatar||''}));}
-  function abrirPerfilOtro(q){perfilAbierto=q;let c=chatsCache.find(x=>x.otro===q)||usuariosCache.find(x=>x.nombre===q);pintarAvatar(document.getElementById('otro-perfil-avatar'),c?c.avatar:'',q);document.getElementById('otro-perfil-nombre').textContent=q;aplicarEstado(document.getElementById('otro-perfil-estado'),q);document.getElementById('otro-perfil-bio').textContent='—';perfilOtro.classList.add('activa');ws.send(JSON.stringify({tipo:'pedir_perfil',quien:q}));}
+
+  // --- LÓGICA DEL PERFIL ---
+  function abrirMiPerfil(){
+    document.getElementById('mi-perfil-nombre-val').textContent = perfilPropio.nombre || nombre;
+    document.getElementById('mi-perfil-user-val').textContent = '@' + (perfilPropio.nombre || nombre).toLowerCase().replace(/\s/g,'');
+    document.getElementById('mi-perfil-bio-val').textContent = perfilPropio.bio || 'Completar sección Info.';
+    document.getElementById('mi-perfil-bio-val').className = perfilPropio.bio ? 'valor' : 'valor verde';
+    pintarAvatar(document.getElementById('mi-perfil-avatar'), perfilPropio.avatar, nombre);
+    miPerfil.classList.add('activa');
+  }
+
+  function abrirEdicion(tipo){
+    if(tipo === 'nombre'){
+      document.getElementById('edit-nombre-input').value = perfilPropio.nombre || nombre;
+      document.getElementById('pantalla-edit-nombre').classList.add('activa');
+    } else {
+      document.getElementById('edit-bio-input').value = perfilPropio.bio || '';
+      document.getElementById('pantalla-edit-bio').classList.add('activa');
+    }
+  }
+
+  function guardarEdicion(tipo){
+    let nuevoNombre = perfilPropio.nombre || nombre;
+    let nuevaBio = perfilPropio.bio || '';
+
+    if(tipo === 'nombre') nuevoNombre = document.getElementById('edit-nombre-input').value.trim();
+    else nuevaBio = document.getElementById('edit-bio-input').value.trim();
+
+    if(!nuevoNombre) return alert('El nombre no puede estar vacío');
+
+    ws.send(JSON.stringify({tipo:'actualizar_perfil', nombre: nuevoNombre, bio: nuevaBio, avatar_url: perfilPropio.avatar || ''}));
+    
+    // Cerrar pantallas de edición
+    document.querySelectorAll('.pantalla-edicion').forEach(p => p.classList.remove('activa'));
+    miPerfil.classList.remove('activa');
+  }
+
+  function abrirPerfilOtro(q){
+    perfilAbierto=q;
+    let c=chatsCache.find(x=>x.otro===q)||usuariosCache.find(x=>x.nombre===q);
+    pintarAvatar(document.getElementById('otro-perfil-avatar'),c?c.avatar:'',q);
+    document.getElementById('otro-perfil-nombre').textContent=q;
+    document.getElementById('otro-perfil-bio').textContent='Cargando...';
+    perfilOtro.classList.add('activa');
+    ws.send(JSON.stringify({tipo:'pedir_perfil',quien:q}));
+  }
 
   function conectar(){
     ws=new WebSocket(WS_URL);
@@ -372,14 +492,20 @@
       }
       else if(m.tipo==='perfil'){
         if(perfilAbierto===m.nombre){
-          pintarAvatar(document.getElementById('otro-perfil-avatar'),m.avatar,m.nombre);
           document.getElementById('otro-perfil-nombre').textContent=m.nombre;
-          document.getElementById('otro-perfil-bio').textContent=m.bio||'—';
-          const c=chatsCache.find(x=>x.otro===m.nombre);if(c){c.en_linea=m.en_linea;c.ultima=m.ultima;}
-          aplicarEstado(document.getElementById('otro-perfil-estado'),m.nombre);
+          document.getElementById('otro-perfil-bio').textContent=m.bio || '—';
+        }
+        if(m.nombre === (perfilPropio.nombre || nombre)){
+          perfilPropio.bio = m.bio;
         }
       }
-      else if(m.tipo==='perfil_actualizado'){nombre=m.nombre;perfilPropio={nombre:m.nombre,bio:m.bio,avatar:m.avatar||''};localStorage.setItem('nombre',nombre);actualizarMiAvatar();miPerfil.classList.remove('activa');ws.send(JSON.stringify({tipo:'pedir_chats'}));}
+      else if(m.tipo==='perfil_actualizado'){
+        nombre=m.nombre;
+        perfilPropio={nombre:m.nombre,bio:m.bio,avatar:m.avatar||''};
+        localStorage.setItem('nombre',nombre);
+        actualizarMiAvatar();
+        ws.send(JSON.stringify({tipo:'pedir_chats'}));
+      }
       else if(m.tipo==='perfil_actualizado_otro'){
         const c=chatsCache.find(x=>x.otro===m.nombre);if(c){c.avatar=m.avatar;}
         const u=usuariosCache.find(x=>x.nombre===m.nombre);if(u){u.avatar=m.avatar;}
@@ -500,7 +626,6 @@
         btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke-dasharray="56" stroke-dashoffset="28"/></svg>';
 
         try {
-          // Ahora la URL es de nuestro servidor, así que no hay CORS
           pend.innerHTML = `<img class="imagen" src="${url}" style="max-width:100%; border-radius:12px;">`;
           pend.classList.remove('imagen-pendiente');
           pend.classList.add('imagen-cargada');
@@ -597,10 +722,10 @@
           const data = JSON.parse(xhr.responseText);
           ws.send(JSON.stringify({tipo:'actualizar_perfil',nombre:perfilPropio.nombre||nombre,bio:perfilPropio.bio||'',avatar_url:data.url}));
         } else {
-          alert('Error al subir la foto');
+          alert('Error al subir la foto. Asegúrate de que sea menor de 300KB.');
         }
       };
-      xhr.onerror = () => alert('Error de red');
+      xhr.onerror = () => alert('Error de red al subir la foto');
       xhr.send(formData);
     }catch(e){console.error(e);alert('Error al subir la foto: '+e.message);}
   }
