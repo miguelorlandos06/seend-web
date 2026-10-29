@@ -329,8 +329,7 @@
 <script>
   const token = localStorage.getItem('token');
   if (!token) window.location.href = 'auth.html';
-  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-  const WS_URL = `${proto}://${location.host}/ws`;
+  const WS_URL = "wss://seend-i33g.onrender.com/ws";
   let ws, nombre = localStorage.getItem('nombre') || '';
   let chatActual=null, respondiendoA=null;
   let escribiendoTimeout=null, ultimoEnvioEscribiendo=0;
@@ -675,7 +674,7 @@
       formData.append('file', file);
 
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/upload', true);
+      xhr.open('POST', 'https://seend-i33g.onrender.com/api/upload', true);
       
       xhr.upload.onprogress = (e) => {
         if (e.lengthComputable) {
@@ -715,7 +714,7 @@
       formData.append('file', file);
 
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/upload', true);
+      xhr.open('POST', 'https://seend-i33g.onrender.com/api/upload', true);
       
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {

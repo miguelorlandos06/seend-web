@@ -107,7 +107,7 @@
   function conectar() {
     return new Promise((res, rej) => {
       const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-      ws = new WebSocket(`${proto}://${location.host}/ws`);
+      ws = new WebSocket("wss://seend-i33g.onrender.com/ws");
       ws.onopen = () => res(ws);
       ws.onerror = () => rej(new Error('No se pudo conectar'));
       ws.onmessage = e => {

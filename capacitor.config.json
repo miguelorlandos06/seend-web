@@ -1,0 +1,8 @@
+{
+  "appId": "com.seend.app",
+  "appName": "Seend",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

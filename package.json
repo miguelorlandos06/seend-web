@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "main": "servidor.js",
   "scripts": {
-    "start": "node servidor.js"
+    "start": "node servidor.js",
+    "build:web": "mkdir -p www && cp auth.html chat.html www/"
   },
   "dependencies": {
     "formidable": "^3.5.1",
     "pg": "^8.11.3",
-    "ws": "^8.16.0"
+    "ws": "^8.16.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
   }
 }
